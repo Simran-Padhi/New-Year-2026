@@ -70,13 +70,15 @@ footer p {
 }
 
 .profile-picture {
-  width: 120px;           /* fixed square */
-  height: 120px;
-  object-fit: cover;      /* crop instead of stretch */
-  border-radius: 10px;     /* perfect circle */
+  width: 100%;
+  max-width: 140px;   /* bigger on phone */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
   display: block;
-  margin: 0 auto 0.5rem;  /* center with spacing */
+  margin: 0 auto 0.5rem;
 }
+
 
 .profile span {
   font-weight: 400;
@@ -85,13 +87,7 @@ footer p {
   margin-top: 0.5rem;
 }
 
-/* Smaller phones */
-@media (max-width: 480px) {
-  .profile-picture {
-    width: 80px;
-    height: 80px;
-  }
-}
+
 
 /* Hidden state */
 .hidden {
@@ -101,20 +97,24 @@ footer p {
 
 /* Letter container */
 #letterContent {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  padding: 1rem;
 }
+
 
 /* Envelope image */
 #letterImage {
-  width: 150%;            /* responsive */
-  max-width: 600px;       /* bigger cap */
+  width: 100%;            /* responsive */
+  max-width: 350px;       /* bigger cap */
   height: auto;
   display: block;
-  margin: 0 auto;
+ 
 }
 
 /* Wish image */
