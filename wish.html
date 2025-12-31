@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Your New Year Wish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Tagesschrift', cursive;
+      text-align: center;
+      background: #fffbe6;
+      margin: 0;
+      padding: 0;
+    }
+    .wish-page {
+      padding: 3rem;
+    }
+    .wish-heading {
+      font-size: 3rem;
+      color: #22015f;
+      margin-bottom: 1rem;
+    }
+    #wishImage {
+      max-width: 400px;
+      width: 90%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <main class="wish-page">
+    <h1 class="wish-heading">🎉 Happy New Year 🎉</h1>
+    <img id="wishImage" src="assets/newyear2.jpg" alt="Happy New Year">
+    <!-- Audio tag -->
+    <audio id="wishSong" src="assets/song.mp3" loop></audio>
+  </main>
+
+  <script>
+    // Confetti effect
+    function startConfetti() {
+      const canvas = document.createElement("canvas");
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const confettiPieces = [];
+      const colors = ["#ff3366", "#ffd700", "#2ecc71", "#3366ff", "#ff6600"];
+
+      for (let i = 0; i < 150; i++) {
+        confettiPieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          w: 8,
+          h: 16,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speed: Math.random() * 3 + 2,
+          rotation: Math.random() * 360,
+          rotationSpeed: Math.random() * 10 - 5,
+        });
+      }
+
+      function drawConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confettiPieces.forEach((p) => {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+
+          p.y += p.speed;
+          p.rotation += p.rotationSpeed;
+
+          if (p.y > canvas.height) {
+            p.y = -20;
+            p.x = Math.random() * canvas.width;
+          }
+        });
+        requestAnimationFrame(drawConfetti);
+      }
+
+      drawConfetti();
+
+      // Stop confetti after 5 seconds
+      setTimeout(() => {
+        document.body.removeChild(canvas);
+      }, 5000);
+    }
+
+    // Run confetti + play song when page loads
+    window.addEventListener("DOMContentLoaded", () => {
+      startConfetti();
+
+      const song = document.getElementById("wishSong");
+      song.play().catch(err => {
+        console.log("Autoplay blocked, user interaction needed:", err);
+      });
+    });
+  </script>
+</body>
+</html>

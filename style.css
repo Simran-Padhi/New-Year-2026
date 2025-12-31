@@ -1,0 +1,140 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background: url("assets/background4.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  text-align: center;
+  background: transparent;
+  color: rgba(2, 38, 80, 0.904);
+  padding: 2rem;
+}
+header h1 {
+  font-family: 'Tagesschrift', cursive;
+  font-size: 3rem;
+  font-weight: 500;
+  color: #000000;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: transparent;
+  color: rgba(2, 38, 80, 0.904);
+  padding: 3rem;
+}
+footer p {
+  font-family: 'Tagesschrift', cursive;
+}
+
+/* Profiles */
+.profiles {
+  display: flex;
+  flex-wrap: wrap;        /* wrap neatly on small screens */
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.profile {
+  background: white;
+  border-radius: 2px;
+  padding: 0.2rem;
+  max-width: 220px;       /* cap size */
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: none;
+  overflow: hidden;
+  text-align: center;
+}
+
+.profile:hover {
+  transform: scale(1.05);
+  background: #d1f7ff;
+}
+
+.profile-picture {
+  width: 120px;           /* fixed square */
+  height: 120px;
+  object-fit: cover;      /* crop instead of stretch */
+  border-radius: 10px;     /* perfect circle */
+  display: block;
+  margin: 0 auto 0.5rem;  /* center with spacing */
+}
+
+.profile span {
+  font-weight: 400;
+  color: #333;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Smaller phones */
+@media (max-width: 480px) {
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Hidden state */
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Letter container */
+#letterContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Envelope image */
+#letterImage {
+  width: 150%;            /* responsive */
+  max-width: 600px;       /* bigger cap */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Wish image */
+#wishImage {
+  width: 90%;             /* fills most of screen */
+  max-width: 450px;       /* slightly larger cap */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  display: block;
+  margin: 1rem auto;
+}
+
+/* Instruction text */
+.click-text {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 480px) {
+  .click-text {
+    font-size: 1rem; /* smaller text on very small phones */
+  }
+}
